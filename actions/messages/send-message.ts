@@ -45,7 +45,7 @@ export const sendMessage = async ({ chatId, content, type, file }: Props) => {
       };
     }
 
-    pusherServer.trigger(chatId, "send-message", {
+    await pusherServer.trigger(chatId, "send-message", {
       chat_id: chatId,
       message_id: response.rows[0].id,
       content: content,

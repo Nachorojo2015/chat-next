@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ChatCard } from "./ChatCard";
 import { getChats } from "@/actions/chats/get-chats";
 import { pusherClient } from "@/lib/pusher-client";
@@ -50,18 +50,12 @@ export const ChatsContainer = () => {
     getUserChats();
   }, []);
 
-  const subscribedChatsRef = useRef(new Set<string>());
-
   useEffect(() => {
     chats.forEach((chat) => {
-      // solo suscribirse si no estaba suscrito
-      if (!subscribedChatsRef.current.has(chat.id)) {
-        pusherClient.subscribe(chat.id);
-        subscribedChatsRef.current.add(chat.id);
-      }
+      pusherClient.subscribe(chat.id);
     });
 
-    const handler = (userMessage: Message) => {
+    pusherClient.bind("send-message", (userMessage: Message) => {
       setChats((prevChats) => {
         return prevChats.map((chat) => {
           if (chat.id === userMessage.chat_id) {
@@ -77,12 +71,12 @@ export const ChatsContainer = () => {
           return chat;
         });
       });
-    };
-
-    pusherClient.bind("send-message", handler);
+    });
 
     return () => {
-      pusherClient.unbind("send-message", handler);
+      chats.forEach((chat) => {
+        pusherClient.unsubscribe(chat.id);
+      });
     };
   }, [chats]);
 
