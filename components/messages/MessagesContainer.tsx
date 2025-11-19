@@ -54,17 +54,26 @@ export const MessagesContainer = ({ chatId }: Props) => {
 
   // Eventos con pusher del lado del cliente
   useEffect(() => {
-    pusherClient.subscribe(chatId);
+    const channel = pusherClient.subscribe(chatId);
 
     const handler = (userMessage: Message) => {
       setMessages((prev) => [...prev, userMessage]);
     };
 
-    pusherClient.bind("send-message", handler);
+    channel.bind("send-message", handler);
+
+    // 🔥 cuando se reconecta, nos volvemos a suscribir
+    const reconnectHandler = () => {
+      // console.log("Pusher reconnected, resubscribing…");
+      pusherClient.subscribe(chatId);
+    };
+
+    pusherClient.connection.bind("connected", reconnectHandler);
 
     return () => {
-      pusherClient.unbind("send-message", handler);
+      channel.unbind("send-message", handler);
       pusherClient.unsubscribe(chatId);
+      pusherClient.connection.unbind("connected", reconnectHandler);
     };
   }, [chatId]);
 
