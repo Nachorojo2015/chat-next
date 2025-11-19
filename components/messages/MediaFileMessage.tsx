@@ -15,6 +15,7 @@ export const MediaFileMessage = ({ chatId }: Props) => {
 
   const [file, setFile] = useState<File | null>(null);
   const [filePreview, setFilePreview] = useState<string>("");
+  const [loader, setLoader] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
@@ -38,6 +39,8 @@ export const MediaFileMessage = ({ chatId }: Props) => {
   const onSendMessage = async () => {
     if (!file) return;
 
+    setLoader(true);
+
     const { ok, message } = await sendMessage({
       chatId: chatId,
       content: null,
@@ -46,6 +49,8 @@ export const MediaFileMessage = ({ chatId }: Props) => {
     });
 
     modalRef.current?.close();
+
+    setLoader(false);
 
     if (!ok) {
       return toast.error(message);
@@ -93,7 +98,17 @@ export const MediaFileMessage = ({ chatId }: Props) => {
               ></video>
             )}
 
-            <button className="btn btn-primary mt-4 w-full" onClick={onSendMessage}>Enviar</button>
+            <button
+              disabled={loader}
+              className="btn btn-primary mt-4 w-full"
+              onClick={onSendMessage}
+            >
+              {loader ? (
+                <span className="loading loading-dots loading-md"></span>
+              ) : (
+                "Enviar"
+              )}
+            </button>
           </div>
         </div>
       </dialog>
