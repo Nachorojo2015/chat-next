@@ -12,7 +12,7 @@ const schema = z.object({
   password: z.string().min(6),
 });
 
-const adapter = PostgresAdapter(pool);
+const adapter = PostgresAdapter(pool) as any;
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter,
@@ -58,7 +58,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
     async session({ session, token }) {
       if (token?.user) {
-        session.user = token.user;
+        session.user = token.user as any;
       }
       return session;
     },
