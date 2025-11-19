@@ -3,6 +3,7 @@
 import { auth } from "@/lib/auth";
 import { getDefaultPictureUser } from "@/utils/get-default-picture-user";
 import { uploadImageOrVideo } from "@/utils/upload-image-or-video";
+import { pool } from "@/lib/db"
 
 interface Props {
   title: string;

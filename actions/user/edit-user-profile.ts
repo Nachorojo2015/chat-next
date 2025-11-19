@@ -2,6 +2,7 @@
 
 import { auth } from "@/lib/auth";
 import { uploadImageOrVideo } from "../../utils/upload-image-or-video";
+import { pool } from "@/lib/db";
 
 interface Props {
   fullname: string;
