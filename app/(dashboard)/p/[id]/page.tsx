@@ -36,7 +36,7 @@ export default async function PrivatePage({ params }: Props) {
 
   if (!ok) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center h-dvh">
         <User size={50} />
         <p className="mt-2">Chat no encontrado o eliminado</p>
       </div>

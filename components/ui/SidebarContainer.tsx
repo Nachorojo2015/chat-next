@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { usePathname } from "next/navigation";
 
 export const SidebarContainer = ({
@@ -12,9 +13,12 @@ export const SidebarContainer = ({
 
   return (
     <aside
-      className={`relative flex flex-col xl:w-[25%] xl:flex w-full bg-base-200 ${
-        chatId ? "hidden" : "flex"
-      }`}
+      className={clsx(
+        "relative flex flex-col xl:w-[25%] xl:flex w-full bg-base-200",
+        {
+          "hidden": chatId,
+        }
+      )}
     >
       {children}
     </aside>

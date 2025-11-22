@@ -36,7 +36,7 @@ export default async function GroupPage({ params }: Props) {
 
   if (!ok) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center h-dvh">
         <UsersRound size={50} />
         <p className="mt-2">Grupo no encontrado o eliminado</p>
       </div>
@@ -45,7 +45,7 @@ export default async function GroupPage({ params }: Props) {
 
   if (group.role === null) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center h-dvh">
         <Frown size={50} />
         <p className="mt-2">No sos parte de este grupo</p>
       </div>
