@@ -33,7 +33,6 @@ export const joinGroup = async (id: string) => {
 
     return {
       ok: true,
-      message: "Te uniste al grupo",
     };
   } catch (error) {
     console.error(error);

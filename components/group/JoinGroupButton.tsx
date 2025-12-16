@@ -1,17 +1,15 @@
 "use client";
 
 import { joinGroup } from "@/actions/group/join-group";
-import { useSidebarStore } from "@/store/sidebar-store";
 import { SquarePlus } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
 export const JoinGroupButton = ({ groupId }: { groupId: string }) => {
-  const closeCreateGroupMenu = useSidebarStore(
-    (state) => state.closeSearchPublicGroupsMenu
-  );
-
   const [loader, setLoader] = useState(false);
+
+  const router = useRouter();
 
   const onJoinGroup = async () => {
     setLoader(true);
@@ -24,9 +22,7 @@ export const JoinGroupButton = ({ groupId }: { groupId: string }) => {
       return toast.error(message);
     }
 
-    toast.success(message);
-
-    closeCreateGroupMenu();
+    router.refresh();
   };
 
   return (

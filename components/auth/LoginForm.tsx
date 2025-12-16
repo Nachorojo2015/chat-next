@@ -1,8 +1,10 @@
 "use client";
 
 import { signIn } from "next-auth/react";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 interface FormData {
   username: string;
@@ -16,13 +18,19 @@ export const LoginForm = () => {
   const onSubmit = async (data: FormData) => {
     setLoader(true);
 
-    await signIn("credentials", {
+    const result = await signIn("credentials", {
       username: data.username,
       password: data.password,
-      redirectTo: "/",
+      redirect: false,
     });
 
     setLoader(false);
+
+    if (result?.error) {
+      return toast.error("Usuario o contraseña incorrectos");
+    }
+
+    redirect('/');
   };
 
   return (
