@@ -55,5 +55,10 @@ Luego, instala las dependencias. Ejecuta este comando en tu proyecto
 npm i
 ```
 
+Ejecuta el proyecto con el comando
+```
+npm run dev
+```
+
 Ya con eso puedes empezar!
 

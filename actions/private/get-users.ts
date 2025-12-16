@@ -1,15 +1,22 @@
 "use server";
 
-import { auth } from "@/lib/auth";
 import { pool } from "@/lib/db";
 
 export const getUsers = async () => {
-    const session = await auth();
-    if (!session) {
-        throw new Error("Unauthorized");
-    }
+  try {
+    const response = await pool.query(
+      "SELECT id, fullname, username, profile_picture FROM users",
+    );
 
-    const response = await pool.query("SELECT id, fullname, username, profile_picture FROM users WHERE id != $1", [session.user?.id]);
-
-    return response.rows
-}
+    return {
+      ok: true,
+      users: response.rows,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      ok: false,
+      message: "Error al obtener los usuarios",
+    };
+  }
+};

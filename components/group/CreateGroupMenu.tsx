@@ -45,13 +45,13 @@ export const CreateGroupMenu = () => {
       picture: data.picture,
     });
 
+    setLoader(false);
+
     if (!ok) {
-      toast.error(message);
+     return toast.error(message);
     }
 
     toast.success(message);
-
-    setLoader(false);
 
     closeCreateGroupMenu();
   };

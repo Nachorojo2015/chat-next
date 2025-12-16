@@ -4,7 +4,7 @@ import { MediaFileMessage } from "@/components/messages/MediaFileMessage";
 import { MessageInput } from "@/components/messages/MessageInput";
 import { MessagesContainer } from "@/components/messages/MessagesContainer";
 import BackHome from "@/components/ui/BackHome";
-import { Frown, UsersRound } from "lucide-react";
+import { UsersRound } from "lucide-react";
 import Image from "next/image";
 
 interface Props {
@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: Props) {
 
   if (!ok) {
     return {
-      title: "Grupo desconocido"
-    }
+      title: "Grupo desconocido",
+    };
   }
 
   return {
@@ -43,18 +43,9 @@ export default async function GroupPage({ params }: Props) {
     );
   }
 
-  if (group.role === null) {
-    return (
-      <div className="flex flex-col items-center justify-center h-dvh">
-        <Frown size={50} />
-        <p className="mt-2">No sos parte de este grupo</p>
-      </div>
-    );
-  }
-
   return (
     <>
-      <header className="flex items-center gap-3 bg-base-200">
+      <header className="flex items-center gap-3 bg-base-200 p-1">
         <BackHome />
 
         <div className="flex items-center gap-3">
@@ -87,11 +78,13 @@ export default async function GroupPage({ params }: Props) {
 
       <MessagesContainer chatId={id} />
 
-      <footer className="flex items-center gap-3 bg-base-200 p-2">
-        <MediaFileMessage chatId={id} />
+      {group.role && (
+        <footer className="flex items-center gap-3 bg-base-200 p-2">
+          <MediaFileMessage chatId={id} />
 
-        <MessageInput chatId={id} />
-      </footer>
+          <MessageInput chatId={id} />
+        </footer>
+      )}
     </>
   );
 }

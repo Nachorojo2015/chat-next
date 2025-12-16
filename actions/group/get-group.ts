@@ -5,9 +5,6 @@ import { pool } from "@/lib/db";
 
 export const getGroup = async ({ chatId }: { chatId: string }) => {
   const session = await auth();
-  if (!session) {
-    throw new Error("Unauthorized");
-  }
 
   try {
     const response = await pool.query(
@@ -23,7 +20,7 @@ export const getGroup = async ({ chatId }: { chatId: string }) => {
       LEFT JOIN chat_members ch ON c.id = ch.chat_id AND ch.user_id = $2
       WHERE c.id = $1
     `,
-      [chatId, session.user?.id]
+      [chatId, session?.user?.id]
     );
 
     if (!response.rowCount) {

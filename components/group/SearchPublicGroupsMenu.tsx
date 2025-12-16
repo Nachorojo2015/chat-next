@@ -3,6 +3,7 @@ import { useSidebarStore } from "@/store/sidebar-store";
 import { MoveLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { SearchGroupItem } from "./SearchGroupItem";
+import { toast } from "sonner";
 
 interface SearchGroups {
   id: string;
@@ -22,10 +23,15 @@ export const SearchPublicGroupsMenu = () => {
 
   useEffect(() => {
     const getSearchGroups = async () => {
-      const groups = await getPublicGroups();
+      const { ok, message, publicGroups } = await getPublicGroups();
 
-      setSearchGroups(groups);
       setLoader(false);
+
+      if (!ok) {
+        return toast.error(message);
+      }
+
+      setSearchGroups(publicGroups as SearchGroups[]);
     };
 
     getSearchGroups();

@@ -1,7 +1,5 @@
-import { joinGroup } from "@/actions/group/join-group";
-import { useSidebarStore } from "@/store/sidebar-store";
 import Image from "next/image";
-import { toast } from "sonner";
+import Link from "next/link";
 
 interface Props {
   id: string;
@@ -16,26 +14,14 @@ export const SearchGroupItem = ({
   picture,
   quantity_members,
 }: Props) => {
-  const closeCreateGroupMenu = useSidebarStore(
-    (state) => state.closeSearchPublicGroupsMenu
-  );
+  
 
-  const onJoinGroup = async () => {
-    const { ok, message } = await joinGroup(id);
-
-    if (!ok) {
-      return toast.error(message);
-    }
-
-    toast.success(message);
-
-    closeCreateGroupMenu();
-  };
+  
 
   return (
-    <div
+    <Link 
+      href={`/g/${id}`}
       className="flex items-center gap-4 hover:bg-gray-100 p-2 rounded-lg transition cursor-pointer"
-      onClick={onJoinGroup}
     >
       <Image
         src={picture}
@@ -52,6 +38,6 @@ export const SearchGroupItem = ({
             : `${quantity_members} miembro`}
         </p>
       </div>
-    </div>
+    </Link>
   );
 };

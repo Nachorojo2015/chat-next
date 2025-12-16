@@ -7,7 +7,10 @@ export const joinGroup = async (id: string) => {
   const session = await auth();
 
   if (!session) {
-    throw new Error("Unauthorized");
+    return {
+      ok: false,
+      message: "Debes iniciar sesión para unirte a este grupo",
+    }
   }
 
   try {

@@ -15,7 +15,10 @@ export const createGroup = async ({ title, description, picture }: Props) => {
   const session = await auth();
 
   if (!session?.user) {
-    throw new Error("Unauthorized");
+    return {
+      ok: false,
+      message: "Debes iniciar sesión para crear tu grupo",
+    }
   }
 
   const client = await pool!.connect()

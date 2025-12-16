@@ -6,7 +6,10 @@ import { pool } from "@/lib/db";
 export const createPrivateChat = async (id: string) => {
   const session = await auth();
   if (!session) {
-    throw new Error("Unauthorized");
+    return {
+      ok: false,
+      message: "Debes iniciar sesión para conversar con el usuario",
+    };
   }
 
   const client = await pool!.connect();

@@ -1,6 +1,5 @@
 import { formatTimestampToHHMM } from "@/utils/format-timestamp-to-hhmm";
 import Image from "next/image";
-import { redirect } from "next/navigation";
 import { ImageZoom } from "../ui/ImageZoom";
 import { useSession } from "next-auth/react";
 
@@ -32,12 +31,9 @@ export const MessageCard = ({
   senderUsername,
 }: Props) => {
   const { data: session } = useSession();
-  if (!session) {
-    redirect("/auth/login");
-  }
 
   if (type === "text") {
-    if (senderId === session.user?.id) {
+    if (senderId === session?.user?.id) {
       return (
         <div className="chat chat-end">
           <div className="chat-header">
@@ -81,7 +77,7 @@ export const MessageCard = ({
   }
 
   if (type === "image") {
-    if (senderId === session.user?.id) {
+    if (senderId === session?.user?.id) {
       return (
         <div className="chat chat-end">
           <div className="chat-header">
@@ -125,7 +121,7 @@ export const MessageCard = ({
   }
 
   if (type === "video") {
-    if (senderId === session.user?.id) {
+    if (senderId === session?.user?.id) {
       return (
         <div className="chat chat-end">
           <div className="chat-header">

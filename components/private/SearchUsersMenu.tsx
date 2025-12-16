@@ -3,6 +3,7 @@ import { useSidebarStore } from "@/store/sidebar-store";
 import { MoveLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { SearchUsersItem } from "./SearchUsersItem";
+import { toast } from "sonner";
 
 interface SearchUsers {
   id: string;
@@ -22,10 +23,15 @@ export const SearchUsersMenu = () => {
 
   useEffect(() => {
     const getSearchUsers = async () => {
-      const users = await getUsers();
+      const { ok, message, users } = await getUsers();
 
-      setSearchUsers(users);
       setLoader(false);
+
+      if (!ok) {
+        return toast.error(message)
+      }
+
+      setSearchUsers(users as SearchUsers[]);
     };
 
     getSearchUsers();

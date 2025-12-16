@@ -1,16 +1,20 @@
 "use server";
 
 import { auth } from "@/lib/auth";
-import { redirect } from "next/navigation";
 import { pool } from "@/lib/db";
 
 export const getChats = async () => {
   const session = await auth();
   if (!session) {
-    redirect("/auth/login");
+    return {
+      ok: false,
+      message: "Debes iniciar sesión para ver tus chats"
+    }
   }
 
-    const chatsResult = await pool?.query(`
+  try {
+    const chatsResult = await pool?.query(
+      `
         SELECT 
           c.id,
           c.type,
@@ -40,7 +44,19 @@ export const getChats = async () => {
           ON ch_other.user_id = u_other.id
       WHERE ch.user_id = $1
       ORDER BY m.sent_at DESC NULLS LAST
-      `, [session.user?.id]);
+      `,
+      [session.user?.id]
+    );
 
-    return chatsResult.rows
+    return {
+      ok: true,
+      chats: chatsResult.rows,
+    }
+  } catch (error) {
+    console.error(error);
+    return {
+      ok: false,
+      message: "Erro al obtener los chats"
+    }
+  }
 };

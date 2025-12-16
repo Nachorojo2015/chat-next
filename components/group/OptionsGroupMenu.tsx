@@ -7,9 +7,10 @@ import {
 import { InfoGroupModal } from "./InfoGroupModal";
 import DeleteGroupModal from "./DeleteGroupModal";
 import { LeaveGroupModal } from "./LeaveGroupModal";
+import { JoinGroupButton } from "./JoinGroupButton";
 
 interface Props {
-  chatId: string
+  chatId: string;
   groupRole: "member" | "owner";
   groupTitle: string;
   groupMembers: number;
@@ -103,5 +104,9 @@ export const OptionsGroupMenu = ({
         <LeaveGroupModal chatId={chatId} groupTitle={groupTitle} />
       </>
     );
+  }
+
+  if (groupRole === null) {
+    return <JoinGroupButton groupId={chatId} />;
   }
 };

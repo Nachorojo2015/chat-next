@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ChatCard } from "./ChatCard";
 import { getChats } from "@/actions/chats/get-chats";
 import { pusherClient } from "@/lib/pusher-client";
+import { toast } from "sonner";
 
 export interface Chats {
   id: string;
@@ -41,10 +42,15 @@ export const ChatsContainer = () => {
 
   useEffect(() => {
     const getUserChats = async () => {
-      const userChats = await getChats();
-
-      setChats(userChats);
+      const { ok, message, chats } = await getChats();
+      
       setLoader(false);
+
+      if (!ok) {
+        return toast.error(message);
+      }
+
+      setChats(chats as Chats[]);
     };
 
     getUserChats();
