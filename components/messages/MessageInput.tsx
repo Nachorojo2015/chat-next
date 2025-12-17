@@ -45,8 +45,8 @@ export const MessageInput = ({ chatId }: Props) => {
         }}
       ></textarea>
 
-      <button className="btn btn-info" onClick={onSendMessage}>
-        <SendHorizontal color="white" />
+      <button className="btn" onClick={onSendMessage}>
+        <SendHorizontal />
       </button>
     </>
   );

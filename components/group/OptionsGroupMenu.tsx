@@ -1,6 +1,7 @@
 import {
   EllipsisVertical,
   Info,
+  Lock,
   SquareArrowOutDownLeft,
   Trash,
 } from "lucide-react";
@@ -8,6 +9,7 @@ import { InfoGroupModal } from "./InfoGroupModal";
 import DeleteGroupModal from "./DeleteGroupModal";
 import { LeaveGroupModal } from "./LeaveGroupModal";
 import { JoinGroupButton } from "./JoinGroupButton";
+import { ChangeGroupTypeModal } from "./ChangeGroupTypeModal";
 
 interface Props {
   chatId: string;
@@ -16,6 +18,7 @@ interface Props {
   groupMembers: number;
   groupDescription: string;
   groupImage: string;
+  groupType: boolean;
 }
 
 export const OptionsGroupMenu = ({
@@ -25,6 +28,7 @@ export const OptionsGroupMenu = ({
   groupMembers,
   groupDescription,
   groupImage,
+  groupType,
 }: Props) => {
   if (groupRole === "owner") {
     return (
@@ -44,6 +48,12 @@ export const OptionsGroupMenu = ({
               </label>
             </li>
             <li>
+              <label htmlFor="change_group_type">
+                <Lock />
+                Tipo de grupo
+              </label>
+            </li>
+            <li>
               <label htmlFor="delete_group_modal" className="text-red-500">
                 <Trash />
                 Eliminar grupo
@@ -59,6 +69,8 @@ export const OptionsGroupMenu = ({
           groupDescription={groupDescription}
           groupImage={groupImage}
         />
+
+        <ChangeGroupTypeModal groupType={groupType} chatId={chatId} />
 
         {/* Modal para eliminar el grupo - Rel: delete_group_modal */}
         <DeleteGroupModal chatId={chatId} groupTitle={groupTitle} />

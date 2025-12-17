@@ -73,6 +73,7 @@ export default async function GroupPage({ params }: Props) {
           groupMembers={group.quantity_members}
           groupDescription={group.description}
           groupImage={group.picture}
+          groupType={group.is_public}
         />
       </header>
 

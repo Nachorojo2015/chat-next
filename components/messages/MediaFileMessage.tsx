@@ -59,7 +59,7 @@ export const MediaFileMessage = ({ chatId }: Props) => {
 
   return (
     <>
-      <label className="btn btn-primary">
+      <label className="btn">
         <ImagePlus />
         <input
           type="file"

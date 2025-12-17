@@ -28,7 +28,7 @@ export const JoinGroupButton = ({ groupId }: { groupId: string }) => {
   return (
     <button
       disabled={loader}
-      className="btn btn-primary shadow-none ml-auto"
+      className="btn btn-ghost shadow-none ml-auto"
       onClick={onJoinGroup}
     >
       {loader ? (

@@ -164,6 +164,8 @@ export const CreateGroupMenu = () => {
           )}
         </button>
       </form>
+
+      <p className="text-xs text-center mt-5 mx-1">Por defecto el grupo creado será <b>público.</b> Podrás cambiarlo a <b>privado</b> en las opciones cuando entres a tu chat de grupo</p>
     </>
   );
 };
