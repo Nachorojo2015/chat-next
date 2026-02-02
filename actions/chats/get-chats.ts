@@ -56,7 +56,7 @@ export const getChats = async () => {
     console.error(error);
     return {
       ok: false,
-      message: "Erro al obtener los chats"
+      message: "Error al obtener los chats"
     }
   }
 };

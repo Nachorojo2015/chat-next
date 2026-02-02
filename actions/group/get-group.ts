@@ -10,8 +10,8 @@ export const getGroup = async ({ chatId }: { chatId: string }) => {
     const response = await pool.query(
       `
       SELECT 
-      c.picture, 
       c.title, 
+      c.picture,
       c.is_public, 
       c.description,
       (SELECT COUNT(*) FROM chat_members WHERE chat_id = c.id) AS quantity_members,

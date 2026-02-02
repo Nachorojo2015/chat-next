@@ -5,21 +5,7 @@ import { ChatCard } from "./ChatCard";
 import { getChats } from "@/actions/chats/get-chats";
 import { pusherClient } from "@/lib/pusher-client";
 import { toast } from "sonner";
-
-export interface Chats {
-  id: string;
-  type: string;
-  title: string;
-  picture: string;
-  content: string | null;
-  sent_at: Date | null;
-  message_type: "text" | "image" | "video";
-  fullname: string | null;
-  username: string | null;
-  other_fullname: string;
-  other_username: string;
-  other_profile_picture: string;
-}
+import { Chat } from "@/types/interfaces";
 
 interface Message {
   chat_id: string;
@@ -27,7 +13,8 @@ interface Message {
   content: string;
   type: "text" | "image" | "video";
   file_url: string;
-  file_public_id: string;
+  width: number;
+  height: number;
   sent_at: Date;
   sender_id: string;
   sender_name: string;
@@ -36,7 +23,7 @@ interface Message {
 }
 
 export const ChatsContainer = () => {
-  const [chats, setChats] = useState<Chats[]>([]);
+  const [chats, setChats] = useState<Chat[]>([]);
 
   const [loader, setLoader] = useState(true);
 
@@ -50,7 +37,7 @@ export const ChatsContainer = () => {
         return toast.error(message);
       }
 
-      setChats(chats as Chats[]);
+      setChats(chats as Chat[]);
     };
 
     getUserChats();

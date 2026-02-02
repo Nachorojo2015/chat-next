@@ -1,3 +1,4 @@
+import { Chat } from "@/types/interfaces";
 import { formatLastMessageChatTime } from "@/utils/format-last-message-chat-time";
 import clsx from "clsx";
 import { Image as ImageIcon, Users, Video } from "lucide-react";
@@ -5,21 +6,6 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-interface Props {
-  id: string;
-  type: string;
-  title: string;
-  picture: string;
-  content: string | null;
-  sent_at: Date | null;
-  message_type: "text" | "image" | "video";
-  fullname: string | null;
-  username: string | null;
-  other_fullname: string;
-  other_username: string;
-  other_profile_picture: string;
-}
 
 export const ChatCard = ({
   id,
@@ -33,7 +19,7 @@ export const ChatCard = ({
   other_profile_picture,
   fullname,
   username,
-}: Props) => {
+}: Chat) => {
   const { data: session } = useSession();
 
   const location = usePathname();
@@ -48,7 +34,7 @@ export const ChatCard = ({
           {
             "bg-blue-400 text-white": chatId === id,
             "hover:bg-gray-100": chatId !== id,
-          }
+          },
         )}
       >
         <span className="absolute top-2 right-2 text-sm">
@@ -98,7 +84,7 @@ export const ChatCard = ({
           {
             "bg-blue-400 text-white": chatId === id,
             "hover:bg-gray-100": chatId !== id,
-          }
+          },
         )}
       >
         <span className="absolute top-2 right-2 text-sm">
