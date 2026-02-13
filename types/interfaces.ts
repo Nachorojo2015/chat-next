@@ -1,5 +1,3 @@
-// TODO: utilizar las interfaces en los server actions
-
 export interface Chat {
   id: string;
   type: string;

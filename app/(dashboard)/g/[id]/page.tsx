@@ -4,24 +4,17 @@ import { MediaFileMessage } from "@/components/messages/MediaFileMessage";
 import { MessageInput } from "@/components/messages/MessageInput";
 import { MessagesContainer } from "@/components/messages/MessagesContainer";
 import BackHome from "@/components/ui/BackHome";
-import { UsersRound } from "lucide-react";
 import Image from "next/image";
 
-interface Props {
+interface Params {
   params: {
     id: string;
   };
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Params) {
   const { id } = await params;
-  const { ok, group } = await getGroup({ chatId: id });
-
-  if (!ok) {
-    return {
-      title: "Grupo desconocido",
-    };
-  }
+  const group = await getGroup({ chatId: id });
 
   return {
     title: group.title,
@@ -29,19 +22,10 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default async function GroupPage({ params }: Props) {
+export default async function GroupPage({ params }: Params) {
   const { id } = await params;
 
-  const { ok, group } = await getGroup({ chatId: id });
-
-  if (!ok) {
-    return (
-      <div className="flex flex-col items-center justify-center h-dvh">
-        <UsersRound size={50} />
-        <p className="mt-2">Grupo no encontrado o eliminado</p>
-      </div>
-    );
-  }
+  const group = await getGroup({ chatId: id });
 
   return (
     <>

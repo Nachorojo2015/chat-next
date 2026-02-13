@@ -2,14 +2,15 @@
 
 import { auth } from "@/lib/auth";
 import { pool } from "@/lib/db";
+import { PrivateChat } from "@/types/interfaces";
 
-export const getPrivateChat = async (privateChatId: string) => {
+export const getPrivateChat = async (privateChatId: string): Promise<PrivateChat> => {
   const session = await auth();
 
   if (!session) {
     throw new Error("Unauthorized");
   }
-
+  
   try {
     const result = await pool.query(
       `
@@ -25,20 +26,10 @@ export const getPrivateChat = async (privateChatId: string) => {
       [privateChatId, session.user?.id]
     );
 
-    if (!result.rowCount) {
-      return {
-        ok: false,
-      }
-    }
-
-    return {
-      ok: true,
-      privateChat: result.rows[0],
-    };
+    return result.rows[0];
   } catch (error) {
     console.error(error);
-    return {
-      ok: false,
-    };
+    
+    throw new Error("Chat no encontrado o eliminado")
   }
 };

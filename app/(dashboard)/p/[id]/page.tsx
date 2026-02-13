@@ -4,24 +4,17 @@ import { MessageInput } from "@/components/messages/MessageInput";
 import { MessagesContainer } from "@/components/messages/MessagesContainer";
 import OptionsPrivateChatMenu from "@/components/private/OptionsPrivateChatMenu";
 import BackHome from "@/components/ui/BackHome";
-import { User } from "lucide-react";
 import Image from "next/image";
 
-interface Props {
+interface Params {
   params: {
     id: string;
   };
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Params) {
   const { id } = await params;
-  const { ok, privateChat } = await getPrivateChat(id);
-
-  if (!ok) {
-    return {
-      title: "Grupo desconocido"
-    }
-  }
+  const privateChat = await getPrivateChat(id);
 
   return {
     title: privateChat.fullname,
@@ -29,19 +22,10 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default async function PrivatePage({ params }: Props) {
+export default async function PrivatePage({ params }: Params) {
   const { id } = await params;
 
-  const { ok, privateChat } = await getPrivateChat(id);
-
-  if (!ok) {
-    return (
-      <div className="flex flex-col items-center justify-center h-dvh">
-        <User size={50} />
-        <p className="mt-2">Chat no encontrado o eliminado</p>
-      </div>
-    );
-  }
+  const privateChat = await getPrivateChat(id);
 
   return (
     <>

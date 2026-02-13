@@ -2,8 +2,9 @@
 
 import { auth } from "@/lib/auth";
 import { pool } from "@/lib/db";
+import { Group } from "@/types/interfaces";
 
-export const getGroup = async ({ chatId }: { chatId: string }) => {
+export const getGroup = async ({ chatId }: { chatId: string }): Promise<Group> => {
   const session = await auth();
 
   try {
@@ -23,20 +24,10 @@ export const getGroup = async ({ chatId }: { chatId: string }) => {
       [chatId, session?.user?.id]
     );
 
-    if (!response.rowCount) {
-      return {
-        ok: false,
-      };
-    }
-
-    return {
-      ok: true,
-      group: response.rows[0],
-    };
+    return response.rows[0]
   } catch (error) {
     console.error(error);
-    return {
-      ok: false,
-    };
+    
+    throw new Error("Grupo no encontrado o eliminado")
   }
 };
