@@ -5,23 +5,10 @@ import { toast } from "sonner";
 import { MessageCard } from "./MessageCard";
 import { useEffect, useRef, useState } from "react";
 import { pusherClient } from "@/lib/pusher-client";
+import { Message } from "@/types/interfaces";
 
 interface Props {
   chatId: string;
-}
-
-interface Message {
-  message_id: string;
-  content: string;
-  type: "text" | "image" | "video";
-  file_url: string;
-  width: number;
-  height: number;
-  sent_at: Date;
-  sender_id: string;
-  sender_name: string;
-  sender_avatar: string;
-  sender_username: string;
 }
 
 export const MessagesContainer = ({ chatId }: Props) => {
@@ -81,17 +68,17 @@ export const MessagesContainer = ({ chatId }: Props) => {
         {messages?.map((message) => (
           <MessageCard
             key={message.message_id}
-            messageId={message.message_id}
+            message_id={message.message_id}
             content={message.content}
             type={message.type}
-            fileUrl={message.file_url}
+            file_url={message.file_url}
             width={message.width}
             height={message.height}
-            sentAt={message.sent_at}
-            senderId={message.sender_id}
-            senderName={message.sender_name}
-            senderAvatar={message.sender_avatar}
-            senderUsername={message.sender_username}
+            sent_at={message.sent_at}
+            sender_id={message.sender_id}
+            sender_name={message.sender_name}
+            sender_avatar={message.sender_avatar}
+            sender_username={message.sender_username}
           />
         ))}
       </ul>

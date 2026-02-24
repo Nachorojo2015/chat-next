@@ -16,7 +16,22 @@ export interface Chat {
 export interface Message {
   message_id: string;
   content: string;
-  type: string;
+  type: "text" | "image" | "video";
+  file_url: string;
+  width: number;
+  height: number;
+  sent_at: Date;
+  sender_id: string;
+  sender_name: string;
+  sender_avatar: string;
+  sender_username: string;
+}
+
+export interface LastMessage {
+  chat_id: string;
+  message_id: string;
+  content: string;
+  type: "text" | "image" | "video";
   file_url: string;
   width: number;
   height: number;

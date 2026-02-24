@@ -5,22 +5,7 @@ import { ChatCard } from "./ChatCard";
 import { getChats } from "@/actions/chats/get-chats";
 import { pusherClient } from "@/lib/pusher-client";
 import { toast } from "sonner";
-import { Chat } from "@/types/interfaces";
-
-interface Message {
-  chat_id: string;
-  message_id: string;
-  content: string;
-  type: "text" | "image" | "video";
-  file_url: string;
-  width: number;
-  height: number;
-  sent_at: Date;
-  sender_id: string;
-  sender_name: string;
-  sender_avatar: string;
-  sender_username: string;
-}
+import { Chat, LastMessage } from "@/types/interfaces";
 
 export const ChatsContainer = () => {
   const [chats, setChats] = useState<Chat[]>([]);
@@ -48,7 +33,7 @@ export const ChatsContainer = () => {
       pusherClient.subscribe(chat.id);
     });
 
-    pusherClient.bind("send-message", (userMessage: Message) => {
+    pusherClient.bind("send-message", (userMessage: LastMessage) => {
       setChats((prevChats) => {
         return prevChats.map((chat) => {
           if (chat.id === userMessage.chat_id) {

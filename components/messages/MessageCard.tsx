@@ -2,50 +2,37 @@ import { formatTimestampToHHMM } from "@/utils/format-timestamp-to-hhmm";
 import Image from "next/image";
 import { ImageZoom } from "../ui/ImageZoom";
 import { useSession } from "next-auth/react";
-
-interface Props {
-  messageId: string;
-  content: string;
-  type: "text" | "image" | "video";
-  fileUrl: string;
-  width: number;
-  height: number;
-  sentAt: Date;
-  senderId: string;
-  senderName: string;
-  senderAvatar: string;
-  senderUsername: string;
-}
+import { Message } from "@/types/interfaces";
 
 export const MessageCard = ({
-  messageId,
+  message_id,
   content,
   type,
-  fileUrl,
+  file_url,
   width,
   height,
-  sentAt,
-  senderId,
-  senderName,
-  senderAvatar,
-  senderUsername,
-}: Props) => {
+  sent_at,
+  sender_id,
+  sender_name,
+  sender_avatar,
+  sender_username,
+}: Message) => {
   const { data: session } = useSession();
 
   if (type === "text") {
-    if (senderId === session?.user?.id) {
+    if (sender_id === session?.user?.id) {
       return (
         <div className="chat chat-end">
           <div className="chat-header">
-            {senderName}
+            {sender_name}
             <time className="text-xs opacity-50">
-              {formatTimestampToHHMM(sentAt)}
+              {formatTimestampToHHMM(sent_at)}
             </time>
           </div>
           <div className="chat-bubble wrap-break-word w-fit whitespace-pre-line bg-primary text-white">
             {content}
           </div>
-          <div className="chat-footer opacity-50">@{senderUsername}</div>
+          <div className="chat-footer opacity-50">@{sender_username}</div>
         </div>
       );
     } else {
@@ -55,41 +42,41 @@ export const MessageCard = ({
             <div className="w-10 rounded-full">
               <Image
                 alt="user-avatar"
-                src={senderAvatar}
+                src={sender_avatar}
                 width={30}
                 height={30}
               />
             </div>
           </div>
           <div className="chat-header">
-            {senderName}
+            {sender_name}
             <time className="text-xs opacity-50">
-              {formatTimestampToHHMM(sentAt)}
+              {formatTimestampToHHMM(sent_at)}
             </time>
           </div>
           <div className="chat-bubble wrap-break-word w-fit whitespace-pre-line">
             {content}
           </div>
-          <div className="chat-footer opacity-50">@{senderUsername}</div>
+          <div className="chat-footer opacity-50">@{sender_username}</div>
         </div>
       );
     }
   }
 
   if (type === "image") {
-    if (senderId === session?.user?.id) {
+    if (sender_id === session?.user?.id) {
       return (
         <div className="chat chat-end">
           <div className="chat-header">
-            {senderName}
+            {sender_name}
             <time className="text-xs opacity-50">
-              {formatTimestampToHHMM(sentAt)}
+              {formatTimestampToHHMM(sent_at)}
             </time>
           </div>
           <div className="chat-bubble p-1 bg-primary w-fit sm:max-w-xs">
-            <ImageZoom fileUrl={fileUrl} width={width} height={height} />
+            <ImageZoom fileUrl={file_url} width={width} height={height} />
           </div>
-          <div className="chat-footer opacity-50">@{senderUsername}</div>
+          <div className="chat-footer opacity-50">@{sender_username}</div>
         </div>
       );
     } else {
@@ -99,41 +86,41 @@ export const MessageCard = ({
             <div className="w-10 rounded-full">
               <Image
                 alt="user-avatar"
-                src={senderAvatar}
+                src={sender_avatar}
                 width={30}
                 height={30}
               />
             </div>
           </div>
           <div className="chat-header">
-            {senderName}
+            {sender_name}
             <time className="text-xs opacity-50">
-              {formatTimestampToHHMM(sentAt)}
+              {formatTimestampToHHMM(sent_at)}
             </time>
           </div>
           <div className="chat-bubble p-1 w-fit sm:max-w-xs">
-            <ImageZoom fileUrl={fileUrl} width={width} height={height} />
+            <ImageZoom fileUrl={file_url} width={width} height={height} />
           </div>
-          <div className="chat-footer opacity-50">@{senderUsername}</div>
+          <div className="chat-footer opacity-50">@{sender_username}</div>
         </div>
       );
     }
   }
 
   if (type === "video") {
-    if (senderId === session?.user?.id) {
+    if (sender_id === session?.user?.id) {
       return (
         <div className="chat chat-end">
           <div className="chat-header">
-            {senderName}
+            {sender_name}
             <time className="text-xs opacity-50">
-              {formatTimestampToHHMM(sentAt)}
+              {formatTimestampToHHMM(sent_at)}
             </time>
           </div>
           <div className="chat-bubble p-1 bg-primary max-w-xs">
-            <video src={fileUrl} controls></video>
+            <video src={file_url} controls></video>
           </div>
-          <div className="chat-footer opacity-50">@{senderUsername}</div>
+          <div className="chat-footer opacity-50">@{sender_username}</div>
         </div>
       );
     } else {
@@ -143,22 +130,22 @@ export const MessageCard = ({
             <div className="w-10 rounded-full">
               <Image
                 alt="user-avatar"
-                src={senderAvatar}
+                src={sender_avatar}
                 width={30}
                 height={30}
               />
             </div>
           </div>
           <div className="chat-header">
-            {senderName}
+            {sender_name}
             <time className="text-xs opacity-50">
-              {formatTimestampToHHMM(sentAt)}
+              {formatTimestampToHHMM(sent_at)}
             </time>
           </div>
           <div className="chat-bubble p-1 max-w-xs">
-            <video src={fileUrl} controls></video>
+            <video src={file_url} controls></video>
           </div>
-          <div className="chat-footer opacity-50">@{senderUsername}</div>
+          <div className="chat-footer opacity-50">@{sender_username}</div>
         </div>
       );
     }
