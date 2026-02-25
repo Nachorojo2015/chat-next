@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { CloseSessionButton } from "../auth/CloseSessionButton";
 import Link from "next/link";
+import { ToggleThemeButton } from "./ToggleThemeButton";
 
 export const DropdownMenu = () => {
   const { data: session } = useSession();
@@ -37,6 +38,9 @@ export const DropdownMenu = () => {
                 />
                 <span>{session?.user?.fullname}</span>
               </button>
+            </li>
+            <li>
+              <ToggleThemeButton />
             </li>
             <li>
               <CloseSessionButton />
