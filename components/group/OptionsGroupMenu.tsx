@@ -39,7 +39,7 @@ export const OptionsGroupMenu = ({
           </div>
           <ul
             tabIndex={-1}
-            className="dropdown-content menu bg-base-100 rounded-box z-1 m-1 w-52 p-2 shadow-sm"
+            className="dropdown-content menu bg-base-200 rounded-box z-1 m-1 w-52 p-2 shadow-sm"
           >
             <li>
               <label htmlFor="info_group_modal">

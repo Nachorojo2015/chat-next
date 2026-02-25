@@ -19,7 +19,7 @@ export const DropdownMenu = () => {
       </div>
       <ul
         tabIndex={-1}
-        className="dropdown-content menu rounded-box z-1 w-64 p-2 shadow-sm bg-white"
+        className="dropdown-content menu rounded-box z-1 w-64 p-2 shadow-sm bg-base-100"
       >
         {session ? (
           <>

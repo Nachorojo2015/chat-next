@@ -66,11 +66,11 @@ export const ChatsContainer = () => {
             <span className="loading loading-dots loading-md"></span>
           </div>
         ) : (
-          <>
+          <div className="grid grid-cols-1 place-content-center gap-y-1">
             {chats.map((chat) => (
               <ChatCard key={chat.id} {...chat} />
             ))}
-          </>
+          </div>
         )}
       </ul>
     </div>

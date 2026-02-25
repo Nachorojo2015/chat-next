@@ -32,8 +32,8 @@ export const ChatCard = ({
         className={clsx(
           "flex items-center gap-4 p-2 rounded-lg transition relative",
           {
-            "bg-blue-400 text-white": chatId === id,
-            "hover:bg-gray-100": chatId !== id,
+            "bg-base-300": chatId === id,
+            "hover:bg-base-300": chatId !== id,
           },
         )}
       >
@@ -82,8 +82,8 @@ export const ChatCard = ({
         className={clsx(
           "flex items-center gap-4 p-2 rounded-lg transition relative",
           {
-            "bg-blue-400 text-white": chatId === id,
-            "hover:bg-gray-100": chatId !== id,
+            "bg-base-300": chatId === id,
+            "hover:bg-base-300": chatId !== id,
           },
         )}
       >
