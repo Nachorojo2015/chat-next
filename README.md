@@ -1,5 +1,8 @@
 # Chat-Next - Una aplicación web para chatear con personas
 
+<img src="./public/preview-app-1.png">
+<img src="./public/preview-app-2.png">
+
 ### Stack utilizado:
 
 - Next js 16
