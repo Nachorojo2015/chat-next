@@ -2,15 +2,21 @@ import { SunMoon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export const ToggleThemeButton = () => {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme === "dark";
+  });
 
   const toggleTheme = () => {
-    setDark(prev => !prev);
+    setDark((prev) => !prev);
   };
 
   useEffect(() => {
     const html = document.documentElement;
-    html.setAttribute("data-theme", dark ? "dark" : "light");
+    const theme = dark ? "dark" : "light";
+
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
   }, [dark]);
 
   return (
@@ -20,12 +26,7 @@ export const ToggleThemeButton = () => {
     >
       <SunMoon size={32} />
       <p>Cambiar tema</p>
-      <input
-        type="checkbox"
-        checked={dark}
-        readOnly
-        className="toggle"
-      />
+      <input type="checkbox" checked={dark} readOnly className="toggle" />
     </div>
   );
 };

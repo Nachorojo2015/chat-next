@@ -16,8 +16,8 @@ export const SidebarContainer = ({
       className={clsx(
         "relative flex flex-col xl:w-[25%] xl:flex w-full bg-base-200",
         {
-          "hidden": chatId,
-        }
+          hidden: chatId,
+        },
       )}
     >
       {children}
