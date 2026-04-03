@@ -65,7 +65,7 @@ export const UserProfile = () => {
       <nav className="flex items-center gap-6 p-2">
         <button
           onClick={closeUserProfile}
-          className="cursor-pointer transition-colors hover:bg-slate-200 p-2 rounded-full"
+          className="cursor-pointer transition-colors hover:bg-base-300 p-2 rounded-full"
         >
           <MoveLeft size={24} />
         </button>

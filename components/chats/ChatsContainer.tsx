@@ -15,7 +15,7 @@ export const ChatsContainer = () => {
   useEffect(() => {
     const getUserChats = async () => {
       const { ok, message, chats } = await getChats();
-      
+
       setLoader(false);
 
       if (!ok) {
@@ -35,19 +35,28 @@ export const ChatsContainer = () => {
 
     pusherClient.bind("send-message", (userMessage: LastMessage) => {
       setChats((prevChats) => {
-        return prevChats.map((chat) => {
-          if (chat.id === userMessage.chat_id) {
-            return {
-              ...chat,
-              content: userMessage.content,
-              message_type: userMessage.type,
-              sent_at: userMessage.sent_at,
-              username: userMessage.sender_username,
-              fullname: userMessage.sender_name,
-            };
-          }
-          return chat;
-        });
+        return prevChats
+          .map((chat) => {
+            if (chat.id === userMessage.chat_id) {
+              return {
+                ...chat,
+                content: userMessage.content,
+                message_type: userMessage.type,
+                sent_at: userMessage.sent_at,
+                username: userMessage.sender_username,
+                fullname: userMessage.sender_name,
+              };
+            }
+            return chat;
+          })
+          .sort((a, b) => {
+            if (!a.sent_at) return 1;
+            if (!b.sent_at) return -1;
+
+            return (
+              new Date(b.sent_at).getTime() - new Date(a.sent_at).getTime()
+            );
+          });
       });
     });
 
