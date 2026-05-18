@@ -61,7 +61,7 @@ export const CreateGroupMenu = () => {
       <nav className="flex items-center gap-6 p-2">
         <button
           onClick={closeCreateGroupMenu}
-          className="cursor-pointer transition-colors duration-300 hover:bg-slate-200 p-2 rounded-full"
+          className="cursor-pointer transition-colors duration-300 hover:bg-base-300 p-2 rounded-full"
         >
           <MoveLeft size={24} />
         </button>

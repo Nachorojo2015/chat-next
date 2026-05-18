@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function RegisterPage() {
   return (
     <section className="flex flex-col items-center justify-center px-5 h-dvh">
-      <div className="w-full xl:max-w-md bg-white">
+      <div className="w-full xl:max-w-md">
         <div>
           <Navigation size={50} className="mx-auto text-blue-500" />
           <h1 className="text-3xl text-center font-bold leading-tight tracking-tight">

@@ -37,13 +37,13 @@ export const LoginForm = () => {
     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
       <input
         placeholder="Nombre de usuario"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+        className="input w-full"
         {...register("username", { required: true })}
       />
       <input
         type="password"
         placeholder="Contraseña"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+        className="input w-full"
         {...register("password", { required: true })}
       />
       <button

@@ -51,7 +51,7 @@ export const RegisterForm = () => {
         </label>
         <input
           type="email"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          className="input w-full"
           placeholder="nombre@empresa.com"
           {...register("email", { required: true })}
         />
@@ -61,7 +61,7 @@ export const RegisterForm = () => {
           Tu nombre de usuario
         </label>
         <input
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          className="input w-full"
           placeholder="Nombre de usuario"
           {...register("username", { required: true })}
         />
@@ -71,7 +71,7 @@ export const RegisterForm = () => {
           Tu nombre completo
         </label>
         <input
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          className="input w-full"
           placeholder="Nombre completo"
           {...register("fullname", { required: true })}
         />
@@ -83,7 +83,7 @@ export const RegisterForm = () => {
         <input
           type="password"
           placeholder="••••••••"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          className="input w-full"
           {...register("password", { required: true })}
         />
       </div>
@@ -96,7 +96,7 @@ export const RegisterForm = () => {
         </label>
         <input
           placeholder="••••••••"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          className="input w-full"
           {...register("confirmPassword", { required: true })}
         />
       </div>

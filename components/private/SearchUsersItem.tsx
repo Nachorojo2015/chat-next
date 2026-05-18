@@ -33,7 +33,7 @@ export const SearchUsersItem = ({
   return (
     <div
       className={clsx(
-        "flex items-center gap-4 hover:bg-gray-100 p-2 rounded-lg transition cursor-pointer",
+        "flex items-center gap-4 hover:bg-base-300 p-2 rounded-lg transition cursor-pointer",
         {
           "hidden": session?.user?.username === username,
         }

@@ -21,7 +21,7 @@ export const SearchGroupItem = ({
   return (
     <Link 
       href={`/g/${id}`}
-      className="flex items-center gap-4 hover:bg-gray-100 p-2 rounded-lg transition cursor-pointer"
+      className="flex items-center gap-4 hover:bg-base-300 p-2 rounded-lg transition cursor-pointer"
     >
       <Image
         src={picture}
