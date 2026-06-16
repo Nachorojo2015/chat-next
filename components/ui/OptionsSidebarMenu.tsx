@@ -8,7 +8,7 @@ export const OptionsSidebarMenu = () => {
 
   return (
     <div className="dropdown dropdown-top dropdown-end ml-auto mb-4 mr-4">
-      <div tabIndex={0} role="button" className="btn btn-ghost m-1">
+      <div tabIndex={0} role="button" className="btn btn-ghost m-1" title="Nuevo mensaje">
         <EllipsisVertical />
       </div>
       <ul

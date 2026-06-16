@@ -20,7 +20,7 @@ export const OptionsPrivateChatMenu = ({
   return (
     <>
       <div className="dropdown dropdown-end ml-auto">
-        <div tabIndex={0} role="button" className="btn btn-ghost m-1">
+        <div tabIndex={0} role="button" className="btn btn-ghost m-1" title="Más acciones">
           <EllipsisVertical />
         </div>
         <ul

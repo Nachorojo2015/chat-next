@@ -66,6 +66,7 @@ export const UserProfile = () => {
         <button
           onClick={closeUserProfile}
           className="cursor-pointer transition-colors hover:bg-base-300 p-2 rounded-full"
+          title="Volver a la lista de chats"
         >
           <MoveLeft size={24} />
         </button>
@@ -76,7 +77,7 @@ export const UserProfile = () => {
         className="flex flex-col items-center justify-center gap-4 px-3"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <label>
+        <label title="Establecer foto de perfil">
           {preview ? (
             <div className="relative cursor-pointer group">
               <Image
@@ -154,6 +155,7 @@ export const UserProfile = () => {
           type="submit"
           disabled={loader}
           className="absolute bottom-4 right-4 bg-blue-500 text-white p-4 shadow-lg hover:bg-blue-600 transition-colors rounded-full"
+          title="Editar perfil"
         >
           {loader ? (
             <span className="loading loading-dots loading-md"></span>

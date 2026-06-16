@@ -70,7 +70,7 @@ export const MessageInput = ({ chatId }: Props) => {
         onChange={onWriteMessage}
       ></textarea>
 
-      <button className="btn" onClick={onSendMessage}>
+      <button className="btn" onClick={onSendMessage} title="Enviar mensaje">
         <SendHorizontal />
       </button>
     </>

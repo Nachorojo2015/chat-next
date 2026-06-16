@@ -62,6 +62,7 @@ export const CreateGroupMenu = () => {
         <button
           onClick={closeCreateGroupMenu}
           className="cursor-pointer transition-colors duration-300 hover:bg-base-300 p-2 rounded-full"
+          title="Volver a la lista de chats"
         >
           <MoveLeft size={24} />
         </button>
@@ -72,7 +73,7 @@ export const CreateGroupMenu = () => {
         className="flex flex-col items-center justify-center gap-4 px-3"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <label>
+        <label title="Establecer foto del grupo">
           {preview ? (
             <div className="relative cursor-pointer group">
               <Image
@@ -156,6 +157,7 @@ export const CreateGroupMenu = () => {
           type="submit"
           disabled={loader}
           className="absolute bottom-4 right-4 bg-blue-500 text-white p-4 shadow-lg hover:bg-blue-600 transition-colors rounded-full"
+          title={loader ? "Creando grupo" : "Crear grupo"}
         >
           {loader ? (
             <span className="loading loading-dots loading-md"></span>

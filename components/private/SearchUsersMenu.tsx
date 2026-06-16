@@ -43,6 +43,7 @@ export const SearchUsersMenu = () => {
         <button
           onClick={closeSearchUsersMenu}
           className="cursor-pointer transition-colors duration-300 hover:bg-base-300 p-2 rounded-full"
+          title="Volver a la lista de chats"
         >
           <MoveLeft size={24} />
         </button>

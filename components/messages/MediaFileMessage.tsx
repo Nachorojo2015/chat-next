@@ -59,7 +59,7 @@ export const MediaFileMessage = ({ chatId }: Props) => {
 
   return (
     <>
-      <label className="btn">
+      <label className="btn" title="Multimedia">
         <ImagePlus />
         <input
           type="file"

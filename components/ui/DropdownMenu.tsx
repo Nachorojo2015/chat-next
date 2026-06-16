@@ -15,7 +15,7 @@ export const DropdownMenu = () => {
 
   return (
     <div className="dropdown dropdown-start">
-      <div tabIndex={0} role="button" className="btn btn-ghost m-1">
+      <div tabIndex={0} role="button" className="btn btn-ghost m-1" title="Menú">
         <Menu />
       </div>
       <ul
