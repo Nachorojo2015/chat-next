@@ -10,7 +10,7 @@ export const uploadImageOrVideo = async ({ mediaFile }: Props) => {
 
   const response: any = await new Promise((resolve, reject) => {
     cloudinary.uploader
-      .upload_stream({resource_type: "auto"}, (err, result) => {
+      .upload_stream({ resource_type: "auto", folder: "chat-next" }, (err, result) => {
         if (err) {
           reject(err);
         }
