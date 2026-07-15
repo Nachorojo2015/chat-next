@@ -1,6 +1,7 @@
 import { formatTimestampToHHMM } from "@/utils/format-timestamp-to-hhmm";
 import Image from "next/image";
 import { ImageZoom } from "../ui/ImageZoom";
+import { VideoPlayer } from "../ui/VideoPlayer";
 import { useSession } from "next-auth/react";
 import { Message } from "@/types/interfaces";
 
@@ -118,7 +119,7 @@ export const MessageCard = ({
             </time>
           </div>
           <div className="chat-bubble p-1 bg-primary max-w-xs">
-            <video src={file_url} controls></video>
+            <VideoPlayer fileUrl={file_url} />
           </div>
           <div className="chat-footer opacity-50">@{sender_username}</div>
         </div>
@@ -143,7 +144,7 @@ export const MessageCard = ({
             </time>
           </div>
           <div className="chat-bubble p-1 max-w-xs">
-            <video src={file_url} controls></video>
+            <VideoPlayer fileUrl={file_url} />
           </div>
           <div className="chat-footer opacity-50">@{sender_username}</div>
         </div>
